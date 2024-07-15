@@ -1,4 +1,4 @@
-import {Text, Image, View, Pressable} from 'react-native';
+import {Text, Image, View, Pressable, ScrollView} from 'react-native';
 import {useState} from 'react';
 
 import {styles} from './styles';
@@ -12,12 +12,16 @@ import GoogleLogin from '../../../components/GoogleLogin';
 const Signup = () => {
   const [checked, setChecked] = useState(false);
 
+  const onSignIn = () => {
+    console.log('Sign in');
+  };
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <AuthHeader title="Sign Up" />
 
       <Input label="Name" placeholder="John Doe" />
-      <Input label="Email" placeholder="example@gmail.com" />
+      <Input label="E-mail" placeholder="example@gmail.com" />
       <Input label="Password" isPassword placeholder="**********" />
 
       <View style={styles.agreeRow}>
@@ -30,10 +34,17 @@ const Signup = () => {
 
       <Button style={styles.button} title="Sign Up" />
 
-      <Sepertor text="Or sign in with" />
+      <Sepertor text="Or sign up with" />
 
       <GoogleLogin />
-    </View>
+
+      <Text onPress={onSignIn} style={styles.footerText}>
+        Already have an account?{' '}
+        <Text onPress={onSignIn} style={styles.footerLink}>
+          Sign In
+        </Text>
+      </Text>
+    </ScrollView>
   );
 };
 
